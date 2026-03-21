@@ -32,12 +32,18 @@ void bubbleSort(vector<int>& array)
 
 int main(void)
 {
-    vector<int> array = { 5, 3, 8, 6, 2 };
+    vector<int> array(5);
 
-    bubbleSort(array);
+    for (int& e : array)
+        cin >> e;
 
-    cout << "\nFinal Result:\n";
+    // 1. array[0]에 있는 값이 e에 복사됨
+    // 2. e에다가 cin으로 값을 넣음.
+    // 3. array[1]에 있는 값이 e에 복사됨.
+
+    // array[0]에 대한 레퍼런스가 e라서.
+
+    printf("Inserted Values >>\n");
     for (int e : array)
         cout << e << " ";
-    cout << "\n\n";
 }
