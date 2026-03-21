@@ -6,8 +6,8 @@ using namespace std;
 // Finds the smallest element and swaps it with the first element
 void selectionSort(vector<int>& array)
 {
-    int arraySize = array.size();
     int min_idx, temp;
+    int arraySize = array.size();
     for (int i = 0; i < arraySize - 1; i++) 
     {
         min_idx = i;
@@ -16,9 +16,7 @@ void selectionSort(vector<int>& array)
             if (array[j] < array[min_idx])
                 min_idx = j;
         }
-        temp = array[min_idx];
-        array[min_idx] = array[i];
-        array[i] = temp;
+        swap(array[i], array[min_idx]);
     }
 }
 
