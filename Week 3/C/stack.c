@@ -108,23 +108,52 @@ int isValidBrackets(Stack *stack, char brackets[], int length) // length means b
 }
 
 // Postfix Expression
-int calculatePostfixExpression(Stack *stack, char expression[], int length) // length means expression's length
+int calculatePostfixExpression(Stack *stack, char expression[]) // length means expression's length
 {
+    // 5, 3, 2, *, +, 8, -
     int A, B;
-    for (int i = 0; i < length; i++)
+    int i = 0;
+    while (expression[i] != NULL)
     {
         if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/')
         {
             B = pop(stack);
             A = pop(stack);
             
+            if (expression[i] == '+')
+            {
+                push(stack, A + B);
+                i++;
+                continue;
+            }
+            if (expression[i] == '-')
+            {
+                push(stack, A - B);
+                i++;
+                continue;
+            }
+            if (expression[i] == '*')
+            {
+                push(stack, A * B);
+                i++;
+                continue;
+            }
+            if (expression[i] == '/')
+            {
+                push(stack, A / B);
+                i++;
+                continue;
+            }
         }
         else // expression[i] is a number(=operand)
         {
             push(stack, expression[i]);
+            i++;
             continue;
         }
     }
+
+    return stack->array[stack->top];
 }
 
 /*
@@ -149,8 +178,12 @@ int main(void)
     Stack* myStack = createStack(capacity);
 
     // isValidBrackets() TEST
-    char brackets[8] = { '[', '{', '(', ')', '}', ']', '[', ']' }; // valid sets of brackets
-    printf("%d", isValidBrackets(myStack, brackets, 8)); // result should be "1"
+    // char brackets[8] = { '[', '{', '(', ')', '}', ']', '[', ']' }; // valid sets of brackets
+    // printf("%d", isValidBrackets(myStack, brackets, 8)); // result should be "1"
+
+    // calculatePostfixExpression() TEST
+    char expression[10] = { 5, 3, 2, '*', '+', 8, '-' };
+    printf("%d", calculatePostfixExpression(myStack, expression));
 
     return 0;
 }
