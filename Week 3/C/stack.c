@@ -172,18 +172,38 @@ void convertInfixToPostfix()
 
 }
 
-int main(void)
+void isValidBracketsTest()
 {
-    int capacity = 10;
+    int capacity = 20;
     Stack* myStack = createStack(capacity);
 
-    // isValidBrackets() TEST
-    // char brackets[8] = { '[', '{', '(', ')', '}', ']', '[', ']' }; // valid sets of brackets
-    // printf("%d", isValidBrackets(myStack, brackets, 8)); // result should be "1"
+    char brackets[8] = { '[', '{', '(', ')', '}', ']', '[', ']' }; // valid sets of brackets
+    int rc = isValidBrackets(myStack, brackets, 8);
 
-    // calculatePostfixExpression() TEST
-    char expression[10] = { 5, 3, 2, '*', '+', 8, '-' };
-    printf("%d", calculatePostfixExpression(myStack, expression));
+    if (rc == 1) // true, false
+        printf("isValidBrackets() works Well!\n");
+    else
+        printf("isValidBrackets() has some Errors!\n");
+}
+
+void calculatePostfixExpressionTest()
+{
+    int capacity = 20;
+    Stack* myStack = createStack(capacity);
+
+    char expression[8] = { 5, 3, 2, '*', '+', 8, '-' };
+    int rc = calculatePostfixExpression(myStack, expression);
+
+    if (rc == 3) // above expression's value is 3
+        printf("calculatePostfixExpression() works Well!\n");
+    else
+        printf("calculatePostfixExpression() has some Errors!\n");
+}
+
+int main(void)
+{
+    isValidBracketsTest();
+    calculatePostfixExpressionTest();
 
     return 0;
 }
