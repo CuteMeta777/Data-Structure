@@ -101,7 +101,7 @@ int isValidBrackets(Stack *stack, char brackets[], int length) // length means b
         }
     }
 
-    if (stack->top == -1)
+    if (isEmpty(stack))
         return 1;
     else
         return 0;
