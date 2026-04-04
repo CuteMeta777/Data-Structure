@@ -20,7 +20,7 @@ void traverse(Node* head)
     }
 }
 
-void search_iterative(Node* head, int key)
+bool search_iterative(Node* head, int key)
 {
     Node* current = head;
     while (current != null)
@@ -32,7 +32,7 @@ void search_iterative(Node* head, int key)
     return false;
 }
 
-void search_recursive(Node* head, int key)
+bool search_recursive(Node* head, int key)
 {
     if (head == null)
         return false;
@@ -49,7 +49,7 @@ void insert_before_head(Node** head_ref, int new_data)
     new_node->data = new_data;
 
     new_node->next = *head_ref;
-    *head_ref = (*head_ref)->next;
+    *head_ref = new_node;
 }
 
 void insert_after_tail(Node* head, int new_data)
@@ -72,7 +72,7 @@ void insert_after_key(Node* head, int key, int new_data)
     new_node->data = new_data;
 
     Node* current = head;
-    while (current->data != key)
+    while (current->data != key && current->next != null)
         current = current->next;
     
     new_node->next = current->next;
