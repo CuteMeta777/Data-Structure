@@ -10,12 +10,33 @@ typedef struct Node
     struct Node* next;
 } Node;
 
+void append_node(Node** head_ref, int new_data)
+{
+    Node* new_node = (Node*)malloc(sizeof(Node));
+    new_node->data = new_data;
+    new_node->next = null;
+
+    if (*head_ref != null)
+    {
+        Node* current = *head_ref;
+        while (current->next != null)
+            current = current->next;
+        Node* tail = current;
+
+        tail->next = new_node;
+    }
+    else
+    {
+        *head_ref = new_node;
+    }
+}
+
 void traverse(Node* head)
 {
     Node* current = head;
     while (current != null)
     {
-        printf("%d", current->data);
+        printf("%d\n", current->data);
         current = current->next;
     }
 }
@@ -134,7 +155,15 @@ void delete_list(Node** head_ref)
 
 int main(void)
 {
-    printf("Hello!\n");
+    Node* head = null;
+    append_node(&head, 10);
+    append_node(&head, 20);
+    append_node(&head, 30);
+    append_node(&head, 40);
+    append_node(&head, 50);
+
+    delete_universal(&head, 50);
+    traverse(head);
 
     return 0;
 }

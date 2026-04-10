@@ -28,10 +28,5 @@ int main(void)
     int arr[5] = { 5, 3, 8, 6, 2 };
     insertionSort(arr, 5);
 
-    printf("\nFinal Result:\n");
-    for (int i = 0; i < 5; i++)
-        printf("%d ", arr[i]);
-    printf("\n\n");
-
     return 0;
 }
