@@ -86,6 +86,39 @@ bool isPalindrome(char word[], int length)
     return true;
 }
 
+bool bracketCheck(char brackets[], int length)
+{
+    Stack* stack = createStack(length);
+
+    int i = 0;
+    while (i < length)
+    {
+        if (brackets[i] == '(')
+        {
+            push(stack, brackets[i]);
+        }
+        else if (brackets[i] == ')')
+        {
+            if (!isEmpty(stack))
+                pop(stack);
+            else
+                return false;
+        }
+        else
+        {
+            printf("invalid string is within the input!\n");
+            return false;
+        }
+
+        i++;
+    }
+
+    if (isEmpty(stack))
+        return true;
+    else
+        return false;
+}
+
 int main()
 {
     char word[10] = "HELLO";
